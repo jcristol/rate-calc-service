@@ -35,39 +35,44 @@ function buildWorkerTimeSheet(
   };
 }
 
-function getWorkRecordsByWeek(
-  workerTimeSheet: IWorkerTimeSheet
-): [[IWorkRecord]] {
+function groupWorkByWeek(workerTimeSheet: IWorkerTimeSheet): [[IWorkRecord]] {
   const {
     workRecords,
     config: { workWeekStart }
   } = workerTimeSheet;
-  const records = workRecords.reduce(
+  // record from the front of the list
+  const firstRecord = workRecords.shift();
+  if (typeof firstRecord === 'undefined') {
+    throw "The first record of the timesheet was undefined. Likely this means there weren't records in the timesheet.";
+  }
+  return workRecords.reduce(
     (weeks, record) => {
       const dayOfTheWeek = new Date(record.date).toLocaleString('en-us', {
         weekday: 'long'
       });
       if (dayOfTheWeek !== workWeekStart) {
         const week = weeks[weeks.length - 1];
-        week?.push(record);
+        week.push(record);
       }
       if (dayOfTheWeek === workWeekStart) {
-        weeks?.push([record]);
+        weeks.push([record]);
       }
       return weeks;
     },
-    [[workRecords?.shift()]]
+    [[firstRecord]]
   );
 }
 
-function summarizeWorkWeek(week: [IWorkRecord]): IWorkWeekSummary {
-  const totalHoursWorked = week.reduce((acc, day) => {
-    return acc + day.hours;
-  }, 0);
+function summarizeWorkWeek(
+  week: [IWorkRecord],
+  hourlyRate = 45,
+  overtimeRate = 1.5
+): IWorkWeekSummary {
+  const totalHoursWorked = week.reduce((acc, day) => acc + day.hours, 0);
   const regularHours = Math.min(totalHoursWorked, 40);
   const overtimeHours = Math.max(totalHoursWorked - 40, 0);
-  const regularHoursGrossPay = regularHours * 45;
-  const overtimeHoursGrossPay = overtimeHours * 45 * 1.5;
+  const regularHoursGrossPay = regularHours * hourlyRate;
+  const overtimeHoursGrossPay = overtimeHours * hourlyRate * overtimeRate;
   return {
     regularHours,
     overtimeHours,
@@ -78,14 +83,15 @@ function summarizeWorkWeek(week: [IWorkRecord]): IWorkWeekSummary {
 }
 
 export const calculatorRouter = Router();
-calculatorRouter.get('/', (req, res) => {
+calculatorRouter.post('/', (req, res) => {
   const workerTimeSheet = buildWorkerTimeSheet(req.body);
-  const hoursWorkedByWeek = getWorkRecordsByWeek(workerTimeSheet);
-  const response = hoursWorkedByWeek.map((week) => {
+  const workByWeek = groupWorkByWeek(workerTimeSheet);
+  const response = workByWeek.map((week) => {
     const [firstDay] = week;
     return {
-      workWeek: firstDay?.date,
+      workWeek: firstDay.date,
       summary: summarizeWorkWeek(week)
     };
   });
+  res.json(response);
 });
