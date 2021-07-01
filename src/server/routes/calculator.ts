@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 interface IWorkerTimeSheet {
-  workerHours: [IWorkRecord];
+  workerHours: IWorkRecord[];
   config: ICalculatorConfig;
 }
 
@@ -26,9 +26,18 @@ interface IWorkWeekSummary {
 function buildWorkerTimeSheet(
   rawData: Record<string, unknown>
 ): IWorkerTimeSheet {
-  // maybe do some schema validation here
   const config = rawData['configuration'] as ICalculatorConfig;
-  const workerHours = rawData['workerHours'] as [IWorkRecord];
+  const workerHours = (rawData['workerHours'] as [Record<string, unknown>]).map(
+    (elem) => {
+      if (typeof elem.date !== 'string') {
+        throw new Error('workerHours.date was not a string');
+      }
+      if (typeof elem.hours !== 'string') {
+        throw new Error('workerHours.hours was not a string');
+      }
+      return { date: elem.date, hours: parseInt(elem.hours) } as IWorkRecord;
+    }
+  );
   return {
     config,
     workerHours
@@ -43,11 +52,12 @@ function groupWorkByWeek(workerTimeSheet: IWorkerTimeSheet): [[IWorkRecord]] {
   // record from the front of the list
   const firstRecord = workerHours.shift();
   if (typeof firstRecord === 'undefined') {
-    throw "The first record of the timesheet was undefined. This means there weren't records in the timesheet.";
+    throw new Error(
+      "The first record of the timesheet was undefined. This means there weren't records in the timesheet."
+    );
   }
   return workerHours.reduce(
     (weeks, record) => {
-      // the date isn't getting set properly
       const dayOfTheWeek = new Date(`${record.date} 0:0:0`).toLocaleString(
         'en-us',
         {
@@ -68,7 +78,7 @@ function groupWorkByWeek(workerTimeSheet: IWorkerTimeSheet): [[IWorkRecord]] {
 }
 
 function summarizeWorkWeek(
-  week: [IWorkRecord],
+  week: IWorkRecord[],
   hourlyRate = 45,
   overtimeRate = 1.5
 ): IWorkWeekSummary {
