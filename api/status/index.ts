@@ -1,5 +1,5 @@
 /* eslint-disable */
 
-module.exports = (req: any, res: any) => {
+module.exports = (_req: any, res: any) => {
   res.json({ status: 'up' });
 };
