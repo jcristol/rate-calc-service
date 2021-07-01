@@ -32,13 +32,13 @@ function buildWorkerTimeSheet(
   if (typeof rawData.workerHourlyBaseRate !== 'string') {
     throw new Error('workWeekStart was not a string');
   }
+  if (!Array.isArray(rawData.workerHours)) {
+    throw new Error('workerHours is not an array');
+  }
   const config = {
     workWeekStart: rawData.workWeekStart,
     workerHourlyBaseRate: parseInt(rawData.workerHourlyBaseRate)
   };
-  if (!Array.isArray(rawData.workerHours)) {
-    throw new Error('workerHours is not an array');
-  }
   const workerHours = rawData.workerHours.map((elem) => {
     if (typeof elem.date !== 'string') {
       throw new Error('workerHours.date was not a string');
@@ -89,7 +89,7 @@ function groupWorkByWeek(workerTimeSheet: IWorkerTimeSheet): [[IWorkRecord]] {
 
 function summarizeWorkWeek(
   week: IWorkRecord[],
-  hourlyRate = 45,
+  hourlyRate: number,
   overtimeRate = 1.5
 ): IWorkWeekSummary {
   const totalHoursWorked = week.reduce((acc, day) => acc + day.hours, 0);
@@ -112,9 +112,10 @@ calculatorRouter.post('/', (req, res) => {
   const workByWeek = groupWorkByWeek(workerTimeSheet);
   const response = workByWeek.map((week) => {
     const [firstDay] = week;
+    const workerHourlyBaseRate = workerTimeSheet.config.workerHourlyBaseRate;
     return {
       workWeek: firstDay.date,
-      summary: summarizeWorkWeek(week)
+      summary: summarizeWorkWeek(week, workerHourlyBaseRate)
     };
   });
   res.json(response);
