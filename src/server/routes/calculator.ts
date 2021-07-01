@@ -35,7 +35,7 @@ function buildWorkerTimeSheet(
       if (typeof elem.hours !== 'string') {
         throw new Error('workerHours.hours was not a string');
       }
-      return { date: elem.date, hours: parseInt(elem.hours) } as IWorkRecord;
+      return { date: elem.date, hours: parseInt(elem.hours) };
     }
   );
   return {
