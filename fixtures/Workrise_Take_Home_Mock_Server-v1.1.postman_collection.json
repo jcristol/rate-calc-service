@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "a8c528d6-1c45-47e5-8378-e7bd0978ddfe",
+		"name": "Workrise Take Home Mock Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/v1/calculateWorkerHours",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"configuration\": {\n        \"workWeekStart\": \"Monday\",\n        \"workerHourlyBaseRate\": 45\n    },\n    \"workerHours\": [\n        {\n            \"date\": \"2021-05-03\",\n            \"hours\": \"0\"\n        },\n        {\n            \"date\": \"2021-05-04\",\n            \"hours\": \"0\"\n        },\n        {\n            \"date\": \"2021-05-05\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-06\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-07\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-08\",\n            \"hours\": \"4\"\n        },\n        {\n            \"date\": \"2021-05-09\",\n            \"hours\": \"0\"\n        },\n        {\n            \"date\": \"2021-05-10\",\n            \"hours\": \"10\"\n        },\n        {\n            \"date\": \"2021-05-11\",\n            \"hours\": \"10\"\n        },\n        {\n            \"date\": \"2021-05-12\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-13\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-14\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-15\",\n            \"hours\": \"4\"\n        },\n        {\n            \"date\": \"2021-05-16\",\n            \"hours\": \"0\"\n        },\n        {\n            \"date\": \"2021-05-17\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-18\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-19\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-20\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-21\",\n            \"hours\": \"10\"\n        },\n        {\n            \"date\": \"2021-05-22\",\n            \"hours\": \"0\"\n        },\n        {\n            \"date\": \"2021-05-23\",\n            \"hours\": \"0\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v1/calculateWorkerHours",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"calculateWorkerHours"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/v1/calculateWorkerHours",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"configuration\": {\n        \"workWeekStart\": \"Monday\",\n        \"workerHourlyBaseRate\": 45\n    },\n    \"workerHours\": [\n        {\n            \"date\": \"2021-05-03\",\n            \"hours\": \"0\"\n        },\n        {\n            \"date\": \"2021-05-04\",\n            \"hours\": \"0\"\n        },\n        {\n            \"date\": \"2021-05-05\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-06\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-07\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-08\",\n            \"hours\": \"4\"\n        },\n        {\n            \"date\": \"2021-05-09\",\n            \"hours\": \"0\"\n        },\n        {\n            \"date\": \"2021-05-10\",\n            \"hours\": \"10\"\n        },\n        {\n            \"date\": \"2021-05-11\",\n            \"hours\": \"10\"\n        },\n        {\n            \"date\": \"2021-05-12\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-13\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-14\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-15\",\n            \"hours\": \"4\"\n        },\n        {\n            \"date\": \"2021-05-16\",\n            \"hours\": \"0\"\n        },\n        {\n            \"date\": \"2021-05-17\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-18\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-19\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-20\",\n            \"hours\": \"8\"\n        },\n        {\n            \"date\": \"2021-05-21\",\n            \"hours\": \"10\"\n        },\n        {\n            \"date\": \"2021-05-22\",\n            \"hours\": \"0\"\n        },\n        {\n            \"date\": \"2021-05-23\",\n            \"hours\": \"0\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/calculateWorkerHours",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"calculateWorkerHours"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"results\": [\n        {\n            \"workWeek\": \"2021-05-03\",\n            \"summary\": {\n                \"regularHours\": 36,\n                \"overtimeHours\": 0,\n                \"regularHoursGrossPay\": 1620,\n                \"overtimeHoursGrossPay\": 0,\n                \"totalGrossPay\": 1620\n            }\n        },\n        {\n            \"workWeek\": \"2021-05-10\",\n            \"summary\": {\n                \"regularHours\": 40,\n                \"overtimeHours\": 8,\n                \"regularHoursGrossPay\": 1800,\n                \"overtimeHoursGrossPay\": 540,\n                \"totalGrossPay\": 2340\n            }\n        },\n        {\n            \"workWeek\": \"2021-05-17\",\n            \"summary\": {\n                \"regularHours\": 40,\n                \"overtimeHours\": 2,\n                \"regularHoursGrossPay\": 1800,\n                \"overtimeHoursGrossPay\": 135,\n                \"totalGrossPay\": 1935\n            }\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "/status health check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/status",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"status"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "/status",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/status",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"status"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 26 Apr 2021 21:19:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "x-srv-trace",
+							"value": "v=1;t=be2543092155bf60"
+						},
+						{
+							"key": "x-srv-span",
+							"value": "v=1;s=d4d7f2b8cc5c33f2"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "120"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "119"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1619472052"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"96-S/5iQ2y1qqIInh5BwoPc+chvDJU\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"up\"\n}"
+				}
+			]
+		}
+	]
+}
