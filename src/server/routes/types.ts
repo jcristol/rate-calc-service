@@ -72,7 +72,9 @@ export function validate(value: unknown): IWorkerTimeSheet {
     return value as IWorkerTimeSheet;
   } else {
     throw new Error(
-      `Failed to validate IWorkerTimeSheet: ${isIWorkerTimeSheet.errors}`
+      `Failed to validate IWorkerTimeSheet: ${JSON.stringify(
+        isIWorkerTimeSheet.errors
+      )}`
     );
   }
 }
