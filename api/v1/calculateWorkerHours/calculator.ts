@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Request, Response } from 'express';
 import {
   IWorkerTimeSheet,
   IWorkRecord,
@@ -73,9 +73,8 @@ export function calculateWorkersComp(workerTimeSheet: IWorkerTimeSheet): {
   );
 }
 
-export const calculatorRouter = Router();
-calculatorRouter.post('/', (req, res) => {
+export default (req: Request, res: Response): void => {
   const workerTimeSheet = validate(req.body);
   const response = calculateWorkersComp(workerTimeSheet);
   res.json(response);
-});
+};
