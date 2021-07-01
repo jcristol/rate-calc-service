@@ -47,8 +47,10 @@ function groupWorkByWeek(workerTimeSheet: IWorkerTimeSheet): [[IWorkRecord]] {
   }
   return workerHours.reduce(
     (weeks, record) => {
+      // the date isn't getting set properly
       const dayOfTheWeek = new Date(record.date).toLocaleString('en-us', {
-        weekday: 'long'
+        weekday: 'long',
+        timeZone: 'America/Chicago'
       });
       if (dayOfTheWeek !== workWeekStart) {
         const week = weeks[weeks.length - 1];
