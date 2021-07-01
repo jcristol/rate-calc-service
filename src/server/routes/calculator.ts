@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 interface IWorkerTimeSheet {
-  workRecords: [IWorkRecord];
+  workerHours: [IWorkRecord];
   config: ICalculatorConfig;
 }
 
@@ -28,24 +28,24 @@ function buildWorkerTimeSheet(
 ): IWorkerTimeSheet {
   // maybe do some schema validation here
   const config = rawData['configuration'] as ICalculatorConfig;
-  const workRecords = rawData['workHours'] as [IWorkRecord];
+  const workerHours = rawData['workerHours'] as [IWorkRecord];
   return {
     config,
-    workRecords
+    workerHours
   };
 }
 
 function groupWorkByWeek(workerTimeSheet: IWorkerTimeSheet): [[IWorkRecord]] {
   const {
-    workRecords,
+    workerHours,
     config: { workWeekStart }
   } = workerTimeSheet;
   // record from the front of the list
-  const firstRecord = workRecords.shift();
+  const firstRecord = workerHours.shift();
   if (typeof firstRecord === 'undefined') {
     throw "The first record of the timesheet was undefined. Likely this means there weren't records in the timesheet.";
   }
-  return workRecords.reduce(
+  return workerHours.reduce(
     (weeks, record) => {
       const dayOfTheWeek = new Date(record.date).toLocaleString('en-us', {
         weekday: 'long'
