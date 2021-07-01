@@ -62,3 +62,7 @@ yarn install
 ```bash
 yarn start
 ```
+
+# TODO
+
+- remove express except for spinning up the app locally
