@@ -67,9 +67,8 @@ export const calculatorRouter = Router();
 calculatorRouter.post('/', (req, res) => {
   const workerTimeSheet = validate(req.body);
   const workByWeek = groupWorkByWeek(workerTimeSheet);
-  const hourlyRate = workerTimeSheet.configuration.workerHourlyBaseRate;
   const response = workByWeek.map((week) =>
-    summarizeWorkWeek(week, hourlyRate)
+    summarizeWorkWeek(week, workerTimeSheet.configuration.workerHourlyBaseRate)
   );
   res.json(response);
 });
