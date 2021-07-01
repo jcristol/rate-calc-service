@@ -43,7 +43,8 @@ function summarizeWorkWeek(
   week: IWorkRecord[],
   hourlyRate: number,
   overtimeRate = 1.5
-): IWorkWeekSummary {
+): { workWeek: string; summary: IWorkWeekSummary } {
+  const [firstDay] = week;
   const totalHoursWorked = week
     .map((day) => parseInt(day.hours))
     .reduce((acc, hours) => acc + hours, 0);
@@ -52,11 +53,14 @@ function summarizeWorkWeek(
   const regularHoursGrossPay = regularHours * hourlyRate;
   const overtimeHoursGrossPay = overtimeHours * hourlyRate * overtimeRate;
   return {
-    regularHours,
-    overtimeHours,
-    regularHoursGrossPay,
-    overtimeHoursGrossPay,
-    totalGrossPay: regularHoursGrossPay + overtimeHoursGrossPay
+    workWeek: firstDay.date,
+    summary: {
+      regularHours,
+      overtimeHours,
+      regularHoursGrossPay,
+      overtimeHoursGrossPay,
+      totalGrossPay: regularHoursGrossPay + overtimeHoursGrossPay
+    }
   };
 }
 
@@ -64,14 +68,9 @@ export const calculatorRouter = Router();
 calculatorRouter.post('/', (req, res) => {
   const workerTimeSheet = validate(req.body);
   const workByWeek = groupWorkByWeek(workerTimeSheet);
-  const response = workByWeek.map((week) => {
-    const [firstDay] = week;
-    const workerHourlyBaseRate =
-      workerTimeSheet.configuration.workerHourlyBaseRate;
-    return {
-      workWeek: firstDay.date,
-      summary: summarizeWorkWeek(week, workerHourlyBaseRate)
-    };
-  });
+  const hourlyRate = workerTimeSheet.configuration.workerHourlyBaseRate;
+  const response = workByWeek.map((week) =>
+    summarizeWorkWeek(week, hourlyRate)
+  );
   res.json(response);
 });
