@@ -6,7 +6,7 @@ import {
   validate
 } from './types';
 
-function groupWorkByWeek(workerTimeSheet: IWorkerTimeSheet): [[IWorkRecord]] {
+function groupWorkByWeek(workerTimeSheet: IWorkerTimeSheet) {
   const {
     workerHours,
     configuration: { workWeekStart }
@@ -42,7 +42,7 @@ function summarizeWorkWeek(
   week: IWorkRecord[],
   hourlyRate: number,
   overtimeRate = 1.5
-): { workWeek: string; summary: IWorkWeekSummary } {
+) {
   const [firstDay] = week;
   const totalHoursWorked = week
     .map((day) => parseInt(day.hours))
@@ -63,12 +63,19 @@ function summarizeWorkWeek(
   };
 }
 
+export function calculateWorkersComp(workerTimeSheet: IWorkerTimeSheet): {
+  workWeek: string;
+  summary: IWorkWeekSummary;
+}[] {
+  const workByWeek = groupWorkByWeek(workerTimeSheet);
+  return workByWeek.map((week) =>
+    summarizeWorkWeek(week, workerTimeSheet.configuration.workerHourlyBaseRate)
+  );
+}
+
 export const calculatorRouter = Router();
 calculatorRouter.post('/', (req, res) => {
   const workerTimeSheet = validate(req.body);
-  const workByWeek = groupWorkByWeek(workerTimeSheet);
-  const response = workByWeek.map((week) =>
-    summarizeWorkWeek(week, workerTimeSheet.configuration.workerHourlyBaseRate)
-  );
+  const response = calculateWorkersComp(workerTimeSheet);
   res.json(response);
 });
