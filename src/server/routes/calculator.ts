@@ -43,15 +43,17 @@ function groupWorkByWeek(workerTimeSheet: IWorkerTimeSheet): [[IWorkRecord]] {
   // record from the front of the list
   const firstRecord = workerHours.shift();
   if (typeof firstRecord === 'undefined') {
-    throw "The first record of the timesheet was undefined. Likely this means there weren't records in the timesheet.";
+    throw "The first record of the timesheet was undefined. This means there weren't records in the timesheet.";
   }
   return workerHours.reduce(
     (weeks, record) => {
       // the date isn't getting set properly
-      const dayOfTheWeek = new Date(record.date).toLocaleString('en-us', {
-        weekday: 'long',
-        timeZone: 'America/Chicago'
-      });
+      const dayOfTheWeek = new Date(`${record.date} 0:0:0`).toLocaleString(
+        'en-us',
+        {
+          weekday: 'long'
+        }
+      );
       if (dayOfTheWeek !== workWeekStart) {
         const week = weeks[weeks.length - 1];
         week.push(record);
