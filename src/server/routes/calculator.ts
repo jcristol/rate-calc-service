@@ -26,18 +26,28 @@ interface IWorkWeekSummary {
 function buildWorkerTimeSheet(
   rawData: Record<string, unknown>
 ): IWorkerTimeSheet {
-  const config = rawData['configuration'] as ICalculatorConfig;
-  const workerHours = (rawData['workerHours'] as [Record<string, unknown>]).map(
-    (elem) => {
-      if (typeof elem.date !== 'string') {
-        throw new Error('workerHours.date was not a string');
-      }
-      if (typeof elem.hours !== 'string') {
-        throw new Error('workerHours.hours was not a string');
-      }
-      return { date: elem.date, hours: parseInt(elem.hours) };
+  if (typeof rawData.workWeekStart !== 'string') {
+    throw new Error('workWeekStart was not a string');
+  }
+  if (typeof rawData.workerHourlyBaseRate !== 'string') {
+    throw new Error('workWeekStart was not a string');
+  }
+  const config = {
+    workWeekStart: rawData.workWeekStart,
+    workerHourlyBaseRate: parseInt(rawData.workerHourlyBaseRate)
+  };
+  if (!Array.isArray(rawData.workerHours)) {
+    throw new Error('workerHours is not an array');
+  }
+  const workerHours = rawData.workerHours.map((elem) => {
+    if (typeof elem.date !== 'string') {
+      throw new Error('workerHours.date was not a string');
     }
-  );
+    if (typeof elem.hours !== 'string') {
+      throw new Error('workerHours.hours was not a string');
+    }
+    return { date: elem.date, hours: parseInt(elem.hours) };
+  });
   return {
     config,
     workerHours
