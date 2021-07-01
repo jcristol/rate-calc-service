@@ -11,7 +11,6 @@ function groupWorkByWeek(workerTimeSheet: IWorkerTimeSheet): [[IWorkRecord]] {
     workerHours,
     configuration: { workWeekStart }
   } = workerTimeSheet;
-  // record from the front of the list
   const firstRecord = workerHours.shift();
   if (typeof firstRecord === 'undefined') {
     throw new Error(
