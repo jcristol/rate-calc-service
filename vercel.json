@@ -1,8 +1,12 @@
 {
   "functions": {
-    "api/**/*.ts": {
-      "maxDuration": 10,
-      "excludeFiles": "*.spec.ts"
+    "api/status/index.ts": {
+      "includeFiles": "lib/**/*.ts",
+      "excludeFiles": "lib/**/*.spec.ts"
+    },
+    "api/v1/calculateWorkerHours/index.ts": {
+      "includeFiles": "lib/**/*.ts",
+      "excludeFiles": "lib/**/*.spec.ts"
     }
   }
 }
