@@ -1,0 +1,17 @@
+{
+  "routes": [
+    { "src": "/status/", "dest": "api/v1/calculateWorkerHours/index.ts" },
+    {
+      "src": "/v1/calculateWorkerHours/",
+      "dest": "api/v1/calculateWorkerHours/index.ts"
+    }
+  ],
+  "functions": {
+    "api/v1/calculateWorkerHours/index.ts": {
+      "excludeFiles": "."
+    },
+    "api/status/index.ts": {
+      "excludeFiles": "."
+    }
+  }
+}
