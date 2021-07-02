@@ -22,10 +22,6 @@
     "types": ["node", "jest"],
     "lib": ["ES6", "DOM"]
   },
-  "include": [
-    "local_server/**/*.ts",
-    "local_server/calculateWorkerHours.ts",
-    "app.ts"
-  ],
+  "include": ["local-server.ts"],
   "exclude": ["node_modules", "**/*.test.ts"]
 }
