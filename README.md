@@ -49,5 +49,5 @@ yarn install
 ### Run
 
 ```bash
-yarn start
+yarn dev
 ```
