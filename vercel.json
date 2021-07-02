@@ -2,12 +2,12 @@
   "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/status/",
-      "destination": "api/v1/calculateWorkerHours/index.ts"
+      "source": "/status",
+      "destination": "api/v1/calculateWorkerHours"
     },
     {
-      "source": "/v1/calculateWorkerHours/",
-      "destination": "api/v1/calculateWorkerHours/index.ts"
+      "source": "/v1/calculateWorkerHours",
+      "destination": "api/v1/calculateWorkerHours"
     }
   ],
   "functions": {
