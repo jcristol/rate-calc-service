@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 
-export const handler = (_req: Request, res: Response): void => {
+export const handler = (_req: VercelRequest, res: VercelResponse): void => {
   res.json({ status: 'up' });
 };

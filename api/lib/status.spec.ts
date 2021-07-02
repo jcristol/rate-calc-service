@@ -1,15 +1,14 @@
-import { Request, Response } from 'express';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 import { handler } from './status';
 
 const createMockResponsObject = () => {
   const res = { json: jest.fn() } as unknown;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return res as Response<any, Record<string, any>>;
+  return res as VercelResponse;
 };
 
 describe('status handler', () => {
   it('should respond with status up', () => {
-    const req = {} as Request;
+    const req = {} as VercelRequest;
     const res = createMockResponsObject();
     const json = res.json;
     handler(req, res);

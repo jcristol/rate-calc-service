@@ -819,6 +819,15 @@
     "@typescript-eslint/types" "4.28.1"
     eslint-visitor-keys "^2.0.0"
 
+"@vercel/node@^1.11.1":
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/@vercel/node/-/node-1.11.1.tgz#3500dff4ebb4fa93e7451ffa16dcade8be2bb305"
+  integrity sha512-2OheDtjxr1OkYyvMh7laDkOA4K6KfLL60IBg1D+PksNri2YEFaPK1lzdq7xuByuDRUs+tm9U57sPVAlyzGjlvw==
+  dependencies:
+    "@types/node" "*"
+    ts-node "8.9.1"
+    typescript "3.9.3"
+
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.5.tgz#c0b678fb32d60fc1219c784d6a826fe385aeb79a"
@@ -3416,6 +3425,17 @@ ts-jest@^27.0.3:
     semver "7.x"
     yargs-parser "20.x"
 
+ts-node@8.9.1:
+  version "8.9.1"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.9.1.tgz#2f857f46c47e91dcd28a14e052482eb14cfd65a5"
+  integrity sha512-yrq6ODsxEFTLz0R3BX2myf0WBCSQh9A+py8PBo1dCzWIOcvisbyH6akNKqDHMgXePF2kir5mm5JXJTH3OUJYOQ==
+  dependencies:
+    arg "^4.1.0"
+    diff "^4.0.1"
+    make-error "^1.1.1"
+    source-map-support "^0.5.17"
+    yn "3.1.1"
+
 ts-node@^10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.0.0.tgz#05f10b9a716b0b624129ad44f0ea05dac84ba3be"
@@ -3487,6 +3507,11 @@ typedarray-to-buffer@^3.1.5:
   integrity sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
   dependencies:
     is-typedarray "^1.0.0"
+
+typescript@3.9.3:
+  version "3.9.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.3.tgz#d3ac8883a97c26139e42df5e93eeece33d610b8a"
+  integrity sha512-D/wqnB2xzNFIcoBG9FG8cXRDjiqSTbG2wd8DMZeQyJlP1vfTkIxH4GKveWaEBYySKIg+USu+E+EDIR47SqnaMQ==
 
 typescript@^4.3.5:
   version "4.3.5"

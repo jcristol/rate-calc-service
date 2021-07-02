@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 import {
   IWorkerTimeSheet,
   IWorkRecord,
@@ -75,7 +75,7 @@ export function calculateWorkersComp(workerTimeSheet: IWorkerTimeSheet): {
   );
 }
 
-export const handler = (req: Request, res: Response): void => {
+export const handler = (req: VercelRequest, res: VercelResponse): void => {
   const workerTimeSheet = validate(req.body);
   const response = calculateWorkersComp(workerTimeSheet);
   res.json(response);
