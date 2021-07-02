@@ -1,7 +1,6 @@
 {
   "name": "rate-calc-service",
   "version": "1.0.0",
-  "main": "index.js",
   "author": "Joshua Cristol <jcristol@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
