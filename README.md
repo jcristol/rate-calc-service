@@ -20,10 +20,6 @@ https://rate-calc-service.vercel.app/api/status
 
 In order to run and develop the project make sure you have these tools installed.
 
-### Docker
-
-- follow the installation instructions at [docker.com](https://docs.docker.com/get-docker/)
-
 ### Node 14+
 
 - highly recommend installing nodejs with a package manager For example installing node on OSX with brew is just a single command
@@ -42,13 +38,6 @@ brew install node
 npm install --global yarn
 ```
 
-## Run Docker
-
-```bash
-docker build -t rate-calc-service .
-docker run -it -p 3000:3000 rate-calc-service
-```
-
 ## Run Locally
 
 ### Install Dependencies
@@ -62,7 +51,3 @@ yarn install
 ```bash
 yarn start
 ```
-
-# TODO
-
-- remove express except for spinning up the app locally
