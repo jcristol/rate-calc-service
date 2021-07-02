@@ -1,4 +1,5 @@
 import { groupWorkByWeek } from '../api/v1/calculateWorkerHours';
+// todo: tests
 // const sampleWorkerHours = [
 //   {
 //     date: '2021-05-03',
