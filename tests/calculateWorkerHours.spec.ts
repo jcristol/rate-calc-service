@@ -92,9 +92,9 @@ describe('groupWorkByWeek', () => {
     const timeSheet = {
       configuration: {
         workWeekStart: 'Monday',
-        workerHourlyBaseRate: 45
+        workerHourlyBaseRate: 45,
       },
-      workerHours: []
+      workerHours: [],
     };
     expect(() => groupWorkByWeek(timeSheet)).toThrow(Error);
   });

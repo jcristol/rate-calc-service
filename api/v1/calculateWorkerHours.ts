@@ -4,7 +4,7 @@ import Ajv from 'ajv';
 const ajv = new Ajv({
   allErrors: true,
   coerceTypes: false,
-  useDefaults: true
+  useDefaults: true,
 });
 
 interface IWorkerTimeSheet {
@@ -33,38 +33,38 @@ const IWorkerTimeSheetSchema = {
     IWorkRecord: {
       properties: {
         date: {
-          type: 'string'
+          type: 'string',
         },
         hours: {
-          type: 'string'
-        }
+          type: 'string',
+        },
       },
       required: ['date', 'hours'],
-      type: 'object'
-    }
+      type: 'object',
+    },
   },
   properties: {
     configuration: {
       properties: {
         workWeekStart: {
-          type: 'string'
+          type: 'string',
         },
         workerHourlyBaseRate: {
-          type: 'number'
-        }
+          type: 'number',
+        },
       },
       required: ['workWeekStart', 'workerHourlyBaseRate'],
-      type: 'object'
+      type: 'object',
     },
     workerHours: {
       items: {
-        $ref: '#/definitions/IWorkRecord'
+        $ref: '#/definitions/IWorkRecord',
       },
-      type: 'array'
-    }
+      type: 'array',
+    },
   },
   required: ['configuration', 'workerHours'],
-  type: 'object'
+  type: 'object',
 };
 
 const isIWorkerTimeSheet = ajv.compile(IWorkerTimeSheetSchema);
@@ -85,20 +85,18 @@ export function groupWorkByWeek(
 ): [[IWorkRecord]] {
   const {
     workerHours,
-    configuration: { workWeekStart }
+    configuration: { workWeekStart },
   } = workerTimeSheet;
   const firstRecord = workerHours.shift();
   if (typeof firstRecord === 'undefined') {
-    throw new Error(
-      "The first record of the timesheet was undefined. This means there weren't records in the timesheet."
-    );
+    throw new Error("The first record of the timesheet was undefined.");
   }
   return workerHours.reduce(
     (weeks, record) => {
       const dayOfTheWeek = new Date(`${record.date} 0:0:0`).toLocaleString(
         'en-us',
         {
-          weekday: 'long'
+          weekday: 'long',
         }
       );
       if (dayOfTheWeek !== workWeekStart) {
@@ -134,8 +132,8 @@ export function summarizeWorkWeek(
       overtimeHours,
       regularHoursGrossPay,
       overtimeHoursGrossPay,
-      totalGrossPay: regularHoursGrossPay + overtimeHoursGrossPay
-    }
+      totalGrossPay: regularHoursGrossPay + overtimeHoursGrossPay,
+    },
   };
 }
 
