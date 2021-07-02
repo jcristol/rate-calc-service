@@ -1,5 +1,0 @@
-{
-  "functions": {
-    "excludeFiles": "api/lib/*"
-  }
-}
