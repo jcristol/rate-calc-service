@@ -1,12 +1,10 @@
 {
   "functions": {
     "api/status/index.ts": {
-      "includeFiles": "lib/**/*.ts",
-      "excludeFiles": "lib/**/*.spec.ts"
+      "includeFiles": "lib/**"
     },
     "api/v1/calculateWorkerHours/index.ts": {
-      "includeFiles": "lib/**/*.ts",
-      "excludeFiles": "lib/**/*.spec.ts"
+      "includeFiles": "lib/**"
     }
   }
 }
