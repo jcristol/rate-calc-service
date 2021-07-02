@@ -1,3 +1,3 @@
-import calculatorHandler from './calculator';
+import calculatorHandler from '../../lib/calculator';
 
 module.exports = calculatorHandler;
