@@ -11,10 +11,10 @@
     }
   ],
   "functions": {
-    "api/v1/calculateWorkerHours/index.ts": {
+    "api/v1/calculateWorkerHours.ts": {
       "maxDuration": 10
     },
-    "api/status/index.ts": {
+    "api/status.ts": {
       "maxDuration": 10
     }
   }
