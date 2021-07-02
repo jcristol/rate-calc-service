@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/status",
-      "destination": "api/v1/calculateWorkerHours"
+      "destination": "/api/status"
     },
     {
       "source": "/v1/calculateWorkerHours",
-      "destination": "api/v1/calculateWorkerHours"
+      "destination": "/api/v1/calculateWorkerHours"
     }
   ]
 }
