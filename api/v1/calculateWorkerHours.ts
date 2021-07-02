@@ -69,15 +69,14 @@ const IWorkerTimeSheetSchema = {
 
 const isIWorkerTimeSheet = ajv.compile(IWorkerTimeSheetSchema);
 export function validate(value: unknown): IWorkerTimeSheet {
-  if (isIWorkerTimeSheet(value)) {
-    return value as IWorkerTimeSheet;
-  } else {
+  if (!isIWorkerTimeSheet(value)) {
     throw new Error(
       `Failed to validate IWorkerTimeSheet: ${JSON.stringify(
         isIWorkerTimeSheet.errors
       )}`
     );
-  }
+  } 
+  return value as IWorkerTimeSheet;
 }
 
 export function groupWorkByWeek(
