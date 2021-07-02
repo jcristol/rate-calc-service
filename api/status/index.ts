@@ -1,2 +1,2 @@
-import statusHandler from '../../lib/status';
+import statusHandler from '../lib/status';
 module.exports = statusHandler;
