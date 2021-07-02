@@ -8,10 +8,10 @@
   ],
   "functions": {
     "api/v1/calculateWorkerHours/index.ts": {
-      "excludeFiles": "."
+      "maxDuration": 10
     },
     "api/status/index.ts": {
-      "excludeFiles": "."
+      "maxDuration": 10
     }
   }
 }
