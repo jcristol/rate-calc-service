@@ -1,2 +1,2 @@
-import calculatorHandler from '../../../lib/calculator';
-module.exports = calculatorHandler;
+import { handler } from '../../lib/calculator';
+module.exports = handler;
