@@ -7,13 +7,13 @@ Express server written in Typescript calculates payout data for hourly workers.
 ## /v1/calculateWorkerHours
 
 ```
-https://rate-calc-service.vercel.app/api/v1/calculateWorkerHours
+https://rate-calc-service.vercel.app/v1/calculateWorkerHours
 ```
 
 ## /status
 
 ```
-https://rate-calc-service.vercel.app/api/status
+https://rate-calc-service.vercel.app/status
 ```
 
 ## Setup Local Environment
