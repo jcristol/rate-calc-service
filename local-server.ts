@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import express, { Application } from 'express';
 import morgan from 'morgan';
-import { handler as calcHandler } from './api/lib/calculator';
-import { handler as statusHandler } from './api/lib/status';
+import calcHandler from './api/v1/calculateWorkerHours';
+import statusHandler from './api/status';
 
 const app = express();
 
