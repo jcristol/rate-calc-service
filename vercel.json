@@ -1,6 +1,10 @@
 {
   "functions": {
-    "api/status/index.ts": {},
-    "api/v1/calculateWorkerHours/index.ts": {}
+    "api/status/index.ts": {
+      "memory": 1024
+    },
+    "api/v1/calculateWorkerHours/index.ts": {
+      "memory": 1024
+    }
   }
 }
