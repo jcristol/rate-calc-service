@@ -1,2 +1,2 @@
 import { handler } from '../lib/status';
-module.exports = handler;
+export default handler;
