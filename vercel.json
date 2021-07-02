@@ -1,0 +1,6 @@
+{
+  "functions": {
+    "api/status/index.ts": {},
+    "api/v1/calculateWorkerHours/index.ts": {}
+  }
+}
