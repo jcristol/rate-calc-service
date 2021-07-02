@@ -1,9 +1,12 @@
 {
-  "routes": [
-    { "src": "/status/", "dest": "api/v1/calculateWorkerHours/index.ts" },
+  "rewrites": [
     {
-      "src": "/v1/calculateWorkerHours/",
-      "dest": "api/v1/calculateWorkerHours/index.ts"
+      "source": "/status/",
+      "destination": "api/v1/calculateWorkerHours/index.ts"
+    },
+    {
+      "source": "/v1/calculateWorkerHours/",
+      "destination": "api/v1/calculateWorkerHours/index.ts"
     }
   ],
   "functions": {
