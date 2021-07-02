@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import statusHandler from './status';
+import { handler } from './status';
 
 const createMockResponsObject = () => {
   const res = { json: jest.fn() } as unknown;
@@ -12,7 +12,7 @@ describe('status handler', () => {
     const req = {} as Request;
     const res = createMockResponsObject();
     const json = res.json;
-    statusHandler(req, res);
+    handler(req, res);
     expect(json).toBeCalledWith({ status: 'up' });
   });
 });
