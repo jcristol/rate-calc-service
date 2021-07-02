@@ -1,5 +1,5 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import { handler } from './status';
+import handler from '../api/status';
 
 const createMockResponsObject = () => {
   const res = { json: jest.fn() } as unknown;

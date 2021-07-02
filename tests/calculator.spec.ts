@@ -1,4 +1,4 @@
-import { groupWorkByWeek } from './calculator';
+import { groupWorkByWeek } from '../api/v1/calculateWorkerHours';
 // const sampleWorkerHours = [
 //   {
 //     date: '2021-05-03',

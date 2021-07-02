@@ -1,5 +1,4 @@
 {
-  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/status",
@@ -9,16 +8,5 @@
       "source": "/v1/calculateWorkerHours",
       "destination": "api/v1/calculateWorkerHours"
     }
-  ],
-  "functions": {
-    "api/v1/calculateWorkerHours.ts": {
-      "maxDuration": 10
-    },
-    "foo.ts": {
-      "maxDuration": 10
-    },
-    "api/status.ts": {
-      "maxDuration": 10
-    }
-  }
+  ]
 }
