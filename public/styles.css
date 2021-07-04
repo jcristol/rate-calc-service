@@ -1,0 +1,38 @@
+/* For all <code> */
+
+h1, h2, h3 {
+  font-family: Inter var,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+code {
+  font-family: MyFancyCustomFont, monospace;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.code-div {
+  max-width: 60rem;
+  background-color: #DCDCDC; 
+  border-radius: 4px; 
+  padding: 0.5rem;
+}
+
+
+.rainbowText {
+  background-image: 
+    linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;  
+}
+
+/* Code in text */
+p > code,
+li > code,
+dd > code,
+td > code {
+  background: #ffeff0;
+  word-wrap: break-word;
+  box-decoration-break: clone;
+  padding: .1rem .3rem .2rem;
+  border-radius: .2rem;
+}

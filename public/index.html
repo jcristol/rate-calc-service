@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <title>Rate Calc Service</title>
+</head>
+
+<body style="padding: 0 2rem;">
+  <!-- Content -->
+  <h1 class="rainbowText">
+    Rate Calc Service
+  </h1>
+  <h2>Have fun testing these two endpoints!</h2>
+  <h3 style="text-decoration: underline;">/v1/calculateWorkerHours</h3>
+  <div class="code-div">
+    <code>
+      > curl --location --request POST 'https://rate-calc-service.vercel.app/v1/calculateWorkerHours' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+      "configuration": {
+          "workWeekStart": "Monday",
+          "workerHourlyBaseRate": 45
+      },
+      "workerHours": [
+          {
+              "date": "2021-05-03",
+              "hours": "0"
+          },
+          {
+              "date": "2021-05-04",
+              "hours": "0"
+          },
+          {
+              "date": "2021-05-05",
+              "hours": "8"
+          },
+          {
+              "date": "2021-05-06",
+              "hours": "8"
+          },
+          {
+              "date": "2021-05-07",
+              "hours": "8"
+          },
+          {
+              "date": "2021-05-08",
+              "hours": "4"
+          },
+          {
+              "date": "2021-05-09",
+              "hours": "0"
+          },
+          {
+              "date": "2021-05-10",
+              "hours": "10"
+          },
+          {
+              "date": "2021-05-11",
+              "hours": "10"
+          },
+          {
+              "date": "2021-05-12",
+              "hours": "8"
+          },
+          {
+              "date": "2021-05-13",
+              "hours": "8"
+          },
+          {
+              "date": "2021-05-14",
+              "hours": "8"
+          },
+          {
+              "date": "2021-05-15",
+              "hours": "4"
+          },
+          {
+              "date": "2021-05-16",
+              "hours": "0"
+          },
+          {
+              "date": "2021-05-17",
+              "hours": "8"
+          },
+          {
+              "date": "2021-05-18",
+              "hours": "8"
+          },
+          {
+              "date": "2021-05-19",
+              "hours": "8"
+          },
+          {
+              "date": "2021-05-20",
+              "hours": "8"
+          },
+          {
+              "date": "2021-05-21",
+              "hours": "10"
+          },
+          {
+              "date": "2021-05-22",
+              "hours": "0"
+          },
+          {
+              "date": "2021-05-23",
+              "hours": "0"
+          }
+      ]
+  }'
+    </code>
+  </div>
+  <h3 style="text-decoration: underline;">/status</h3>
+  <div class="code-div">
+    <code>
+      > curl --location --request GET 'https://rate-calc-service.vercel.app/status'
+    </code>
+  </div>
+</body>
+</html>
