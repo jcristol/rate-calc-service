@@ -138,18 +138,11 @@ export function summarizeWorkWeek(
   };
 }
 
-export function calculateWorkersComp(workerTimeSheet: IWorkerTimeSheet): {
-  workWeek: string;
-  summary: IWorkWeekSummary;
-}[] {
-  const workByWeek = groupWorkByWeek(workerTimeSheet);
-  return workByWeek.map((week) =>
-    summarizeWorkWeek(week, workerTimeSheet.configuration.workerHourlyBaseRate)
-  );
-}
-
 export default (req: VercelRequest, res: VercelResponse): void => {
   const workerTimeSheet = validate(req.body);
-  const response = calculateWorkersComp(workerTimeSheet);
+  const workByWeek = groupWorkByWeek(workerTimeSheet);
+  const response = workByWeek.map((week) =>
+    summarizeWorkWeek(week, workerTimeSheet.configuration.workerHourlyBaseRate)
+  );
   res.json(response);
 };
