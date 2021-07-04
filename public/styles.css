@@ -14,26 +14,20 @@ code {
 .code-div {
   max-width: 60rem;
   background-color: #DCDCDC; 
-  border-radius: 4px; 
+  border-radius: 8px; 
   padding: 0.5rem;
 }
 
+.effect1{
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+     -moz-box-shadow: 0 10px 6px -6px #777;
+          box-shadow: 0 10px 6px -6px #777;
+}
 
 .rainbowText {
   background-image: 
     linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); 
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;  
-}
-
-/* Code in text */
-p > code,
-li > code,
-dd > code,
-td > code {
-  background: #ffeff0;
-  word-wrap: break-word;
-  box-decoration-break: clone;
-  padding: .1rem .3rem .2rem;
-  border-radius: .2rem;
 }

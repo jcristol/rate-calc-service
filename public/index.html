@@ -9,19 +9,19 @@
   <title>Rate Calc Service</title>
 </head>
 
-<body style="padding: 0 2rem;">
+<body style="padding: 1rem 2rem;">
   <!-- Content -->
   <div style="display: flex; justify-content: start;">
-    <h1 class="rainbowText">
+    <h1 class="rainbowText" style="margin: 0;">
       Rate Calc Service
     </h1>
-    <a href="https://github.com/jcristol/rate-calc-service" style="margin: 20px 40px;">
+    <a href="https://github.com/jcristol/rate-calc-service" style="margin-left: 2rem;">
       <img src="hmm.png" alt="github-logo" style="width:42px;height:42px;">
     </a> 
   </div>
   <h2>Have fun testing these two endpoints!</h2>
   <h3 style="text-decoration: underline;">/v1/calculateWorkerHours</h3>
-  <div class="code-div">
+  <div class="code-div effect1">
     <code>
       > curl --location --request POST 'https://rate-calc-service.vercel.app/v1/calculateWorkerHours' \<br/>
 --header 'Content-Type: application/json' \<br/>
@@ -119,8 +119,8 @@
 }'
     </code>
   </div>
-  <h3 style="text-decoration: underline;">/status</h3>
-  <div class="code-div">
+  <h3 style="text-decoration: underline; margin-top: 3rem;">/status</h3>
+  <div class="code-div effect1">
     <code>
       > curl --location --request GET 'https://rate-calc-service.vercel.app/status'
     </code>
