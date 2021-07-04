@@ -2,7 +2,7 @@ import { groupWorkByWeek } from '../api/v1/calculateWorkerHours';
 import {
   sampleGroupedByWeekMondayStart,
   sampleGroupedByWeekTuesdayStart,
-  sampleWorkerHours,
+  sampleWorkerHours
 } from './fixtures/workerHours';
 
 describe('groupWorkByWeek', () => {
@@ -10,9 +10,9 @@ describe('groupWorkByWeek', () => {
     const timeSheet = {
       configuration: {
         workWeekStart: 'Monday',
-        workerHourlyBaseRate: 45,
+        workerHourlyBaseRate: 45
       },
-      workerHours: [],
+      workerHours: []
     };
     expect(() => groupWorkByWeek(timeSheet)).toThrow(Error);
   });
@@ -20,9 +20,9 @@ describe('groupWorkByWeek', () => {
     const timeSheet = {
       configuration: {
         workWeekStart: 'Monday',
-        workerHourlyBaseRate: 45,
+        workerHourlyBaseRate: 45
       },
-      workerHours: sampleWorkerHours,
+      workerHours: sampleWorkerHours
     };
     const groupedByMonday = groupWorkByWeek(timeSheet);
     groupedByMonday.forEach((week, weekIndex) => {
@@ -40,9 +40,9 @@ describe('groupWorkByWeek', () => {
     const timeSheet = {
       configuration: {
         workWeekStart: 'Tuesday',
-        workerHourlyBaseRate: 45,
+        workerHourlyBaseRate: 45
       },
-      workerHours: sampleWorkerHours,
+      workerHours: sampleWorkerHours
     };
     const groupedByTuesday = groupWorkByWeek(timeSheet);
     groupedByTuesday.forEach((week, weekIndex) => {
