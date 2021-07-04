@@ -8,6 +8,7 @@ code {
   font-family: MyFancyCustomFont, monospace;
   font-size: 1rem;
   font-weight: 500;
+  overflow-wrap: break-word;
 }
 
 .code-div {
