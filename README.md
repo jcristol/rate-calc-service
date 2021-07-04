@@ -1,4 +1,4 @@
-# rate-calc-service
+# rate-calc-service [rate-calc-service.vercel.app](https://rate-calc-service.vercel.app)
 
 Serverless function written in Typescript calculates payout data for hourly workers.
 
