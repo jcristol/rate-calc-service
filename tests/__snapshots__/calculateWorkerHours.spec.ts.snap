@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`request handler should return the correct json repsonse for a normal request 1`] = `
+Array [
+  Object {
+    "summary": Object {
+      "overtimeHours": 0,
+      "overtimeHoursGrossPay": 0,
+      "regularHours": 28,
+      "regularHoursGrossPay": 1260,
+      "totalGrossPay": 1260,
+    },
+    "workWeek": "2021-05-03",
+  },
+  Object {
+    "summary": Object {
+      "overtimeHours": 8,
+      "overtimeHoursGrossPay": 540,
+      "regularHours": 40,
+      "regularHoursGrossPay": 1800,
+      "totalGrossPay": 2340,
+    },
+    "workWeek": "2021-05-10",
+  },
+  Object {
+    "summary": Object {
+      "overtimeHours": 2,
+      "overtimeHoursGrossPay": 135,
+      "regularHours": 40,
+      "regularHoursGrossPay": 1800,
+      "totalGrossPay": 1935,
+    },
+    "workWeek": "2021-05-17",
+  },
+]
+`;
