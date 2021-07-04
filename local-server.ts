@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import calcHandler from './api/v1/calculateWorkerHours';
