@@ -86,11 +86,11 @@ export function groupWorkByWeek(
     workerHours,
     configuration: { workWeekStart }
   } = workerTimeSheet;
-  const firstRecord = workerHours.shift();
+  const firstRecord = workerHours[0];
   if (typeof firstRecord === 'undefined') {
     throw new Error('The first record of the timesheet was undefined.');
   }
-  return workerHours.reduce(
+  return workerHours.splice(1).reduce(
     (weeks, record) => {
       const dayOfTheWeek = new Date(`${record.date} 0:0:0`).toLocaleString(
         'en-us',

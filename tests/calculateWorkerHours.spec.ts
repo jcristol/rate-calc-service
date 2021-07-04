@@ -1,4 +1,7 @@
-import { groupWorkByWeek } from '../api/v1/calculateWorkerHours';
+import {
+  groupWorkByWeek,
+  summarizeWorkWeek
+} from '../api/v1/calculateWorkerHours';
 import {
   sampleGroupedByWeekMondayStart,
   sampleGroupedByWeekTuesdayStart,
@@ -16,7 +19,7 @@ describe('groupWorkByWeek', () => {
     };
     expect(() => groupWorkByWeek(timeSheet)).toThrow(Error);
   });
-  it.only('should group data by week with the start of each week as Monday', () => {
+  it('should group data by week with the start of each week as Monday', () => {
     const timeSheet = {
       configuration: {
         workWeekStart: 'Monday',
@@ -36,7 +39,7 @@ describe('groupWorkByWeek', () => {
       });
     });
   });
-  it('group week data with Wednesday as the start date', () => {
+  it('group week data with Tuesday as the start date', () => {
     const timeSheet = {
       configuration: {
         workWeekStart: 'Tuesday',
@@ -58,6 +61,24 @@ describe('groupWorkByWeek', () => {
   });
 });
 
-describe('hello world', () => {
-  return;
+describe('summarizeWorkWeek', () => {
+  it('should calculate the correct amounts for the work done in a week with no overtime', () => {
+    const sampleWeek = sampleGroupedByWeekMondayStart[0];
+    const {
+      workWeek,
+      summary: {
+        regularHours,
+        overtimeHours,
+        regularHoursGrossPay,
+        overtimeHoursGrossPay,
+        totalGrossPay
+      }
+    } = summarizeWorkWeek(sampleWeek, 45);
+    expect(workWeek).toBe('2021-05-03');
+    expect(regularHours).toBe(28);
+    expect(overtimeHours).toBe(0);
+    expect(regularHoursGrossPay).toBe(1260);
+    expect(overtimeHoursGrossPay).toBe(0);
+    expect(totalGrossPay).toBe(1260);
+  });
 });
