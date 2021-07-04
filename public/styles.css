@@ -1,7 +1,12 @@
 /* For all <code> */
 
-h1, h2, h3 {
-  font-family: Inter var,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+h1,
+h2,
+h3 {
+  font-family: Inter var, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji;
 }
 
 code {
@@ -13,21 +18,29 @@ code {
 
 .code-div {
   max-width: 60rem;
-  background-color: #DCDCDC; 
-  border-radius: 8px; 
+  background-color: #dcdcdc;
+  border-radius: 8px;
   padding: 0.5rem;
 }
 
-.effect1{
+.effect1 {
   -webkit-box-shadow: 0 10px 6px -6px #777;
-     -moz-box-shadow: 0 10px 6px -6px #777;
-          box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
 }
 
 .rainbowText {
-  background-image: 
-    linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); 
+  background-image: linear-gradient(
+    to right,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;  
+  -webkit-text-fill-color: transparent;
 }
