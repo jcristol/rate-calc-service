@@ -41,9 +41,9 @@ Array [
     "summary": Object {
       "overtimeHours": 0,
       "overtimeHoursGrossPay": 0,
-      "regularHours": 0,
-      "regularHoursGrossPay": 0,
-      "totalGrossPay": 0,
+      "regularHours": 8,
+      "regularHoursGrossPay": 480,
+      "totalGrossPay": 480,
     },
     "workWeek": "2021-05-03",
   },
@@ -55,7 +55,7 @@ Array [
       "regularHoursGrossPay": 2400,
       "totalGrossPay": 3120,
     },
-    "workWeek": "2021-05-05",
+    "workWeek": "2021-05-06",
   },
   Object {
     "summary": Object {
@@ -65,17 +65,17 @@ Array [
       "regularHoursGrossPay": 2400,
       "totalGrossPay": 2760,
     },
-    "workWeek": "2021-05-12",
+    "workWeek": "2021-05-13",
   },
   Object {
     "summary": Object {
       "overtimeHours": 0,
       "overtimeHoursGrossPay": 0,
-      "regularHours": 26,
-      "regularHoursGrossPay": 1560,
-      "totalGrossPay": 1560,
+      "regularHours": 18,
+      "regularHoursGrossPay": 1080,
+      "totalGrossPay": 1080,
     },
-    "workWeek": "2021-05-19",
+    "workWeek": "2021-05-20",
   },
 ]
 `;

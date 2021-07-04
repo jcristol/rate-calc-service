@@ -1,6 +1,6 @@
 {
   "configuration": {
-    "workWeekStart": "Wednesday",
+    "workWeekStart": "Thursday",
     "workerHourlyBaseRate": 60
   },
   "workerHours": [
