@@ -1,6 +1,6 @@
 # rate-calc-service
 
-Express server written in Typescript calculates payout data for hourly workers.
+Serverless function server written in Typescript calculates payout data for hourly workers.
 
 # Production Urls
 
