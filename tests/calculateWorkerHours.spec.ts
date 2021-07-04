@@ -28,16 +28,9 @@ describe('groupWorkByWeek', () => {
       workerHours: sampleWorkerHours
     };
     const groupedByMonday = groupWorkByWeek(timeSheet);
-    groupedByMonday.forEach((week, weekIndex) => {
-      week.forEach((day, dayIndex) => {
-        expect(day.date).toBe(
-          sampleGroupedByWeekMondayStart[weekIndex][dayIndex].date
-        );
-        expect(day.hours).toBe(
-          sampleGroupedByWeekMondayStart[weekIndex][dayIndex].hours
-        );
-      });
-    });
+    expect(JSON.stringify(groupedByMonday)).toBe(
+      JSON.stringify(sampleGroupedByWeekMondayStart)
+    );
   });
   it('group week data with Tuesday as the start date', () => {
     const timeSheet = {
@@ -48,16 +41,9 @@ describe('groupWorkByWeek', () => {
       workerHours: sampleWorkerHours
     };
     const groupedByTuesday = groupWorkByWeek(timeSheet);
-    groupedByTuesday.forEach((week, weekIndex) => {
-      week.forEach((day, dayIndex) => {
-        expect(day.date).toBe(
-          sampleGroupedByWeekTuesdayStart[weekIndex][dayIndex].date
-        );
-        expect(day.hours).toBe(
-          sampleGroupedByWeekTuesdayStart[weekIndex][dayIndex].hours
-        );
-      });
-    });
+    expect(JSON.stringify(groupedByTuesday)).toBe(
+      JSON.stringify(sampleGroupedByWeekTuesdayStart)
+    );
   });
 });
 
@@ -136,4 +122,9 @@ describe('summarizeWorkWeek', () => {
     expect(summary3.overtimeHoursGrossPay).toBe(420);
     expect(summary3.totalGrossPay).toBe(1620);
   });
+});
+
+describe('request handler', () => {
+  it('should throw a error if the request body doesnt match the schema', () => {}),
+    it('should return the correct json repsonse', () => {});
 });
