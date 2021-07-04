@@ -18,21 +18,19 @@ https://rate-calc-service.vercel.app/status
 
 ## Setup Local Environment
 
-In order to run and develop the project make sure you have these tools installed.
+To develop the project you will need these tools.
 
 ### Node 14+
 
-- highly recommend installing nodejs with a package manager For example installing node on OSX with brew is just a single command
-
+Highly recommend installing Node 14 with a package manager. 
 ```bash
 brew install node
 ```
-
-- alternatively you can install nodejs if you follow the install steps on their [website](https://nodejs.org/en/download/)
+alternatively you can install Node 14 following the install steps on the nodejs [website](https://nodejs.org/en/download/)
 
 ### Yarn
 
-- once nodejs is installed you can install yarn with
+install yarn after node is installed
 
 ```bash
 npm install --global yarn
