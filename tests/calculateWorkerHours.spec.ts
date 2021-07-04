@@ -131,7 +131,7 @@ describe('summarizeWorkWeek', () => {
       1.75
     );
     expect(workWeek3).toBe('2021-05-10');
-    expect(summary3.regularHours).toBe(41);
+    expect(summary3.regularHours).toBe(40);
     expect(summary3.overtimeHours).toBe(8);
     expect(summary3.regularHoursGrossPay).toBe(1200);
     expect(summary3.overtimeHoursGrossPay).toBe(420);
