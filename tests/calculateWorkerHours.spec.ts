@@ -62,23 +62,78 @@ describe('groupWorkByWeek', () => {
 });
 
 describe('summarizeWorkWeek', () => {
-  it('should calculate the correct amounts for the work done in a week with no overtime', () => {
+  it('should calculate the correct amounts for the work week with no overtime', () => {
     const sampleWeek = sampleGroupedByWeekMondayStart[0];
-    const {
-      workWeek,
-      summary: {
-        regularHours,
-        overtimeHours,
-        regularHoursGrossPay,
-        overtimeHoursGrossPay,
-        totalGrossPay
-      }
-    } = summarizeWorkWeek(sampleWeek, 45);
-    expect(workWeek).toBe('2021-05-03');
-    expect(regularHours).toBe(28);
-    expect(overtimeHours).toBe(0);
-    expect(regularHoursGrossPay).toBe(1260);
-    expect(overtimeHoursGrossPay).toBe(0);
-    expect(totalGrossPay).toBe(1260);
+    // baseline wage
+    const { workWeek: workWeek1, summary: summary1 } = summarizeWorkWeek(
+      sampleWeek,
+      45
+    );
+    expect(workWeek1).toBe('2021-05-03');
+    expect(summary1.regularHours).toBe(28);
+    expect(summary1.overtimeHours).toBe(0);
+    expect(summary1.regularHoursGrossPay).toBe(1260);
+    expect(summary1.overtimeHoursGrossPay).toBe(0);
+    expect(summary1.totalGrossPay).toBe(1260);
+    // lower wage
+    const { workWeek: workWeek2, summary: summary2 } = summarizeWorkWeek(
+      sampleWeek,
+      20
+    );
+    expect(workWeek2).toBe('2021-05-03');
+    expect(summary2.regularHours).toBe(28);
+    expect(summary2.overtimeHours).toBe(0);
+    expect(summary2.regularHoursGrossPay).toBe(560);
+    expect(summary2.overtimeHoursGrossPay).toBe(0);
+    expect(summary2.totalGrossPay).toBe(560);
+    // mid wage different overtime rate
+    const { workWeek: workWeek3, summary: summary3 } = summarizeWorkWeek(
+      sampleWeek,
+      30,
+      1.75
+    );
+    expect(workWeek3).toBe('2021-05-03');
+    expect(summary3.regularHours).toBe(28);
+    expect(summary3.overtimeHours).toBe(0);
+    expect(summary3.regularHoursGrossPay).toBe(840);
+    expect(summary3.overtimeHoursGrossPay).toBe(0);
+    expect(summary3.totalGrossPay).toBe(840);
+  });
+  it('should calculate the correct amounts for the work week with overtime', () => {
+    const sampleWeek = sampleGroupedByWeekMondayStart[1];
+    // baseline wage
+    const { workWeek: workWeek1, summary: summary1 } = summarizeWorkWeek(
+      sampleWeek,
+      45
+    );
+    expect(workWeek1).toBe('2021-05-10');
+    expect(summary1.regularHours).toBe(40);
+    expect(summary1.overtimeHours).toBe(8);
+    expect(summary1.regularHoursGrossPay).toBe(1800);
+    expect(summary1.overtimeHoursGrossPay).toBe(540);
+    expect(summary1.totalGrossPay).toBe(2340);
+    // lower wage
+    const { workWeek: workWeek2, summary: summary2 } = summarizeWorkWeek(
+      sampleWeek,
+      20
+    );
+    expect(workWeek2).toBe('2021-05-10');
+    expect(summary2.regularHours).toBe(40);
+    expect(summary2.overtimeHours).toBe(8);
+    expect(summary2.regularHoursGrossPay).toBe(800);
+    expect(summary2.overtimeHoursGrossPay).toBe(240);
+    expect(summary2.totalGrossPay).toBe(1040);
+    // mid wage different overtime rate
+    const { workWeek: workWeek3, summary: summary3 } = summarizeWorkWeek(
+      sampleWeek,
+      30,
+      1.75
+    );
+    expect(workWeek3).toBe('2021-05-10');
+    expect(summary3.regularHours).toBe(40);
+    expect(summary3.overtimeHours).toBe(8);
+    expect(summary3.regularHoursGrossPay).toBe(1200);
+    expect(summary3.overtimeHoursGrossPay).toBe(420);
+    expect(summary3.totalGrossPay).toBe(1620);
   });
 });
