@@ -21,7 +21,6 @@ const parseJsonFile = (path: string) =>
 
 const invalidRequestBody = parseJsonFile('./fixtures/invalidRequestBody.json');
 const validRequestBody = parseJsonFile('./fixtures/validRequestBody.json');
-const validResponseBody = parseJsonFile('./fixtures/validResponseBody.json');
 
 describe('groupWorkByWeek', () => {
   it('throw an Error when there isnt work in the time sheet', () => {
@@ -153,6 +152,7 @@ describe('request handler', () => {
     const req = { body: validRequestBody } as VercelRequest;
     const resp = { json } as unknown as VercelResponse;
     calculateWorkerHours(req, resp);
-    expect(json).toBeCalledWith(validResponseBody);
+    const responseObject = json.mock.calls[0][0];
+    expect(responseObject).toMatchSnapshot();
   });
 });
