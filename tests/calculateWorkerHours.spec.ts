@@ -2,11 +2,26 @@ import {
   groupWorkByWeek,
   summarizeWorkWeek
 } from '../api/v1/calculateWorkerHours';
+import calculateWorkerHours from '../api/v1/calculateWorkerHours';
 import {
   sampleGroupedByWeekMondayStart,
   sampleGroupedByWeekTuesdayStart,
   sampleWorkerHours
 } from './fixtures/workerHours';
+import { VercelRequest, VercelResponse } from '@vercel/node';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+
+const parseJsonFile = (path: string) =>
+  JSON.parse(
+    readFileSync(resolve(__dirname, path), {
+      encoding: 'ascii'
+    })
+  );
+
+const invalidRequestBody = parseJsonFile('./fixtures/invalidRequestBody.json');
+// const validRequestBody = parseJsonFile('./fixtures/validRequestBody.json');
+// const validResponseBody = parseJsonFile('./fixtures/validResponseBody.json');
 
 describe('groupWorkByWeek', () => {
   it('throw an Error when there isnt work in the time sheet', () => {
@@ -125,6 +140,13 @@ describe('summarizeWorkWeek', () => {
 });
 
 describe('request handler', () => {
-  it('should throw a error if the request body doesnt match the schema', () => {}),
-    it('should return the correct json repsonse', () => {});
+  it.only('should throw a error if the request body doesnt match the schema', () => {
+    const json = jest.fn();
+    const req = { body: invalidRequestBody } as VercelRequest;
+    const resp = { json } as unknown as VercelResponse;
+    expect(() => calculateWorkerHours(req, resp)).toThrowError(
+      /.*Failed to validate IWorkerTimeSheet:.*/
+    );
+  });
+  // it('should return the correct json repsonse', () => {});
 });
