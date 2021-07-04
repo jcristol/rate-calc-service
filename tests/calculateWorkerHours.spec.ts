@@ -1,6 +1,9 @@
 import { groupWorkByWeek } from '../api/v1/calculateWorkerHours';
-import {sampleGroupedByWeekMondayStart, sampleGroupedByWeekTuesdayStart, sampleWorkerHours} from './fixtures/workerHours';
-
+import {
+  sampleGroupedByWeekMondayStart,
+  sampleGroupedByWeekTuesdayStart,
+  sampleWorkerHours,
+} from './fixtures/workerHours';
 
 describe('groupWorkByWeek', () => {
   it('throw an Error when there isnt work in the time sheet', () => {
@@ -24,10 +27,14 @@ describe('groupWorkByWeek', () => {
     const groupedByMonday = groupWorkByWeek(timeSheet);
     groupedByMonday.forEach((week, weekIndex) => {
       week.forEach((day, dayIndex) => {
-        expect(day.date).toBe(sampleGroupedByWeekMondayStart[weekIndex][dayIndex].date);
-        expect(day.hours).toBe(sampleGroupedByWeekMondayStart[weekIndex][dayIndex].hours);
-      })
-    })
+        expect(day.date).toBe(
+          sampleGroupedByWeekMondayStart[weekIndex][dayIndex].date
+        );
+        expect(day.hours).toBe(
+          sampleGroupedByWeekMondayStart[weekIndex][dayIndex].hours
+        );
+      });
+    });
   });
   it('group week data with Wednesday as the start date', () => {
     const timeSheet = {
@@ -40,9 +47,17 @@ describe('groupWorkByWeek', () => {
     const groupedByTuesday = groupWorkByWeek(timeSheet);
     groupedByTuesday.forEach((week, weekIndex) => {
       week.forEach((day, dayIndex) => {
-        expect(day.date).toBe(sampleGroupedByWeekTuesdayStart[weekIndex][dayIndex].date);
-        expect(day.hours).toBe(sampleGroupedByWeekTuesdayStart[weekIndex][dayIndex].hours);
-      })
-    })
+        expect(day.date).toBe(
+          sampleGroupedByWeekTuesdayStart[weekIndex][dayIndex].date
+        );
+        expect(day.hours).toBe(
+          sampleGroupedByWeekTuesdayStart[weekIndex][dayIndex].hours
+        );
+      });
+    });
   });
+});
+
+describe('hello world', () => {
+  return;
 });

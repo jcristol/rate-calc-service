@@ -75,7 +75,7 @@ export function validate(value: unknown): IWorkerTimeSheet {
         isIWorkerTimeSheet.errors
       )}`
     );
-  } 
+  }
   return value as IWorkerTimeSheet;
 }
 
@@ -88,7 +88,7 @@ export function groupWorkByWeek(
   } = workerTimeSheet;
   const firstRecord = workerHours.shift();
   if (typeof firstRecord === 'undefined') {
-    throw new Error("The first record of the timesheet was undefined.");
+    throw new Error('The first record of the timesheet was undefined.');
   }
   return workerHours.reduce(
     (weeks, record) => {

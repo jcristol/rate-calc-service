@@ -5,6 +5,6 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   rules: {
-    "comma-dangle": ["error", "always-multiline"],
+    'comma-dangle': ['error', 'always-multiline'],
   },
 };
