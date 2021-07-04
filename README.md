@@ -8,7 +8,7 @@ To develop the project you will need these tools.
 
 ### Node 14+
 
-Highly recommend installing Node 14 with a package manager. 
+Highly recommend installing Node 14 with a package manager. Ex: for OSX
 ```bash
 brew install node
 ```
