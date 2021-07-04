@@ -1,32 +1,32 @@
 [
   {
-      "workWeek": "2021-05-03",
-      "summary": {
-          "regularHours": 28,
-          "overtimeHours": 0,
-          "regularHoursGrossPay": 1260,
-          "overtimeHoursGrossPay": 0,
-          "totalGrossPay": 1260
-      }
+    "workWeek": "2021-05-03",
+    "summary": {
+      "regularHours": 28,
+      "overtimeHours": 0,
+      "regularHoursGrossPay": 1260,
+      "overtimeHoursGrossPay": 0,
+      "totalGrossPay": 1260
+    }
   },
   {
-      "workWeek": "2021-05-10",
-      "summary": {
-          "regularHours": 40,
-          "overtimeHours": 8,
-          "regularHoursGrossPay": 1800,
-          "overtimeHoursGrossPay": 540,
-          "totalGrossPay": 2340
-      }
+    "workWeek": "2021-05-10",
+    "summary": {
+      "regularHours": 40,
+      "overtimeHours": 8,
+      "regularHoursGrossPay": 1800,
+      "overtimeHoursGrossPay": 540,
+      "totalGrossPay": 2340
+    }
   },
   {
-      "workWeek": "2021-05-17",
-      "summary": {
-          "regularHours": 40,
-          "overtimeHours": 2,
-          "regularHoursGrossPay": 1800,
-          "overtimeHoursGrossPay": 135,
-          "totalGrossPay": 1935
-      }
+    "workWeek": "2021-05-17",
+    "summary": {
+      "regularHours": 40,
+      "overtimeHours": 2,
+      "regularHoursGrossPay": 1800,
+      "overtimeHoursGrossPay": 135,
+      "totalGrossPay": 1935
+    }
   }
 ]
