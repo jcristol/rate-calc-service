@@ -20,8 +20,8 @@ const parseJsonFile = (path: string) =>
   );
 
 const invalidRequestBody = parseJsonFile('./fixtures/invalidRequestBody.json');
-// const validRequestBody = parseJsonFile('./fixtures/validRequestBody.json');
-// const validResponseBody = parseJsonFile('./fixtures/validResponseBody.json');
+const validRequestBody = parseJsonFile('./fixtures/validRequestBody.json');
+const validResponseBody = parseJsonFile('./fixtures/validResponseBody.json');
 
 describe('groupWorkByWeek', () => {
   it('throw an Error when there isnt work in the time sheet', () => {
@@ -140,7 +140,7 @@ describe('summarizeWorkWeek', () => {
 });
 
 describe('request handler', () => {
-  it.only('should throw a error if the request body doesnt match the schema', () => {
+  it('should throw a error if the request body doesnt match the schema', () => {
     const json = jest.fn();
     const req = { body: invalidRequestBody } as VercelRequest;
     const resp = { json } as unknown as VercelResponse;
@@ -148,5 +148,11 @@ describe('request handler', () => {
       /.*Failed to validate IWorkerTimeSheet:.*/
     );
   });
-  // it('should return the correct json repsonse', () => {});
+  it('should return the correct json repsonse for a normal request', () => {
+    const json = jest.fn();
+    const req = { body: validRequestBody } as VercelRequest;
+    const resp = { json } as unknown as VercelResponse;
+    calculateWorkerHours(req, resp);
+    expect(json).toBeCalledWith(validResponseBody);
+  });
 });
