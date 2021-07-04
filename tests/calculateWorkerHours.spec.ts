@@ -21,6 +21,9 @@ const parseJsonFile = (path: string) =>
 
 const invalidRequestBody = parseJsonFile('./fixtures/invalidRequestBody.json');
 const validRequestBody = parseJsonFile('./fixtures/validRequestBody.json');
+const higherDayRateRequestBody = parseJsonFile(
+  './fixtures/higherDayRateRequest.json'
+);
 
 describe('groupWorkByWeek', () => {
   it('throw an Error when there isnt work in the time sheet', () => {
@@ -42,9 +45,7 @@ describe('groupWorkByWeek', () => {
       workerHours: sampleWorkerHours
     };
     const groupedByMonday = groupWorkByWeek(timeSheet);
-    expect(JSON.stringify(groupedByMonday)).toBe(
-      JSON.stringify(sampleGroupedByWeekMondayStart)
-    );
+    expect(groupedByMonday).toMatchObject(sampleGroupedByWeekMondayStart);
   });
   it('group week data with Tuesday as the start date', () => {
     const timeSheet = {
@@ -55,9 +56,7 @@ describe('groupWorkByWeek', () => {
       workerHours: sampleWorkerHours
     };
     const groupedByTuesday = groupWorkByWeek(timeSheet);
-    expect(JSON.stringify(groupedByTuesday)).toBe(
-      JSON.stringify(sampleGroupedByWeekTuesdayStart)
-    );
+    expect(groupedByTuesday).toMatchObject(sampleGroupedByWeekTuesdayStart);
   });
 });
 
@@ -147,9 +146,17 @@ describe('request handler', () => {
       /.*Failed to validate IWorkerTimeSheet:.*/
     );
   });
-  it('should return the correct json repsonse for a normal request', () => {
+  it('should return the correct repsonse for a the sample request', () => {
     const json = jest.fn();
     const req = { body: validRequestBody } as VercelRequest;
+    const resp = { json } as unknown as VercelResponse;
+    calculateWorkerHours(req, resp);
+    const responseObject = json.mock.calls[0][0];
+    expect(responseObject).toMatchSnapshot();
+  });
+  it('should return the correct response for a request with a different base rate and different start date', () => {
+    const json = jest.fn();
+    const req = { body: higherDayRateRequestBody } as VercelRequest;
     const resp = { json } as unknown as VercelResponse;
     calculateWorkerHours(req, resp);
     const responseObject = json.mock.calls[0][0];

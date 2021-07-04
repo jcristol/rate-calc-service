@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`request handler should return the correct json repsonse for a normal request 1`] = `
+exports[`request handler should return the correct repsonse for a the sample request 1`] = `
 Array [
   Object {
     "summary": Object {
@@ -31,6 +31,51 @@ Array [
       "totalGrossPay": 1935,
     },
     "workWeek": "2021-05-17",
+  },
+]
+`;
+
+exports[`request handler should return the correct response for a request with a different base rate and different start date 1`] = `
+Array [
+  Object {
+    "summary": Object {
+      "overtimeHours": 0,
+      "overtimeHoursGrossPay": 0,
+      "regularHours": 0,
+      "regularHoursGrossPay": 0,
+      "totalGrossPay": 0,
+    },
+    "workWeek": "2021-05-03",
+  },
+  Object {
+    "summary": Object {
+      "overtimeHours": 8,
+      "overtimeHoursGrossPay": 720,
+      "regularHours": 40,
+      "regularHoursGrossPay": 2400,
+      "totalGrossPay": 3120,
+    },
+    "workWeek": "2021-05-05",
+  },
+  Object {
+    "summary": Object {
+      "overtimeHours": 4,
+      "overtimeHoursGrossPay": 360,
+      "regularHours": 40,
+      "regularHoursGrossPay": 2400,
+      "totalGrossPay": 2760,
+    },
+    "workWeek": "2021-05-12",
+  },
+  Object {
+    "summary": Object {
+      "overtimeHours": 0,
+      "overtimeHoursGrossPay": 0,
+      "regularHours": 26,
+      "regularHoursGrossPay": 1560,
+      "totalGrossPay": 1560,
+    },
+    "workWeek": "2021-05-19",
   },
 ]
 `;
