@@ -1,4 +1,6 @@
 import {
+  getDateOfPreviousDay,
+  getStartOfWorkWeekDate,
   groupWorkByWeek,
   summarizeWorkWeek
 } from '../api/v1/calculateWorkerHours';
@@ -60,13 +62,29 @@ describe('groupWorkByWeek', () => {
   });
 });
 
+describe('getPreviousDay', () => {
+  it('should return the previous day given a date', () => {
+    expect(getDateOfPreviousDay('2021-05-03')).toBe('2021-05-02');
+    expect(getDateOfPreviousDay('2021-05-01')).toBe('2021-04-30');
+    expect(getDateOfPreviousDay('2021-01-01')).toBe('2020-12-31');
+  });
+});
+
+describe('getStartOfWorkWeekDate', () => {
+  it('should return the date of the first day in the work week', () => {
+    expect(getStartOfWorkWeekDate('2021-05-03', 'Monday')).toBe('2021-05-03');
+    expect(getStartOfWorkWeekDate('2021-05-03', 'Tuesday')).toBe('2021-04-27');
+  });
+});
+
 describe('summarizeWorkWeek', () => {
   it('should calculate the correct amounts for the work week with no overtime', () => {
     const sampleWeek = sampleGroupedByWeekMondayStart[0];
     // baseline wage
     const { workWeek: workWeek1, summary: summary1 } = summarizeWorkWeek(
       sampleWeek,
-      45
+      45,
+      'Monday'
     );
     expect(workWeek1).toBe('2021-05-03');
     expect(summary1.regularHours).toBe(28);
@@ -77,7 +95,8 @@ describe('summarizeWorkWeek', () => {
     // lower wage
     const { workWeek: workWeek2, summary: summary2 } = summarizeWorkWeek(
       sampleWeek,
-      20
+      20,
+      'Monday'
     );
     expect(workWeek2).toBe('2021-05-03');
     expect(summary2.regularHours).toBe(28);
@@ -89,6 +108,7 @@ describe('summarizeWorkWeek', () => {
     const { workWeek: workWeek3, summary: summary3 } = summarizeWorkWeek(
       sampleWeek,
       30,
+      'Monday',
       1.75
     );
     expect(workWeek3).toBe('2021-05-03');
@@ -103,7 +123,8 @@ describe('summarizeWorkWeek', () => {
     // baseline wage
     const { workWeek: workWeek1, summary: summary1 } = summarizeWorkWeek(
       sampleWeek,
-      45
+      45,
+      'Monday'
     );
     expect(workWeek1).toBe('2021-05-10');
     expect(summary1.regularHours).toBe(40);
@@ -114,7 +135,8 @@ describe('summarizeWorkWeek', () => {
     // lower wage
     const { workWeek: workWeek2, summary: summary2 } = summarizeWorkWeek(
       sampleWeek,
-      20
+      20,
+      'Monday'
     );
     expect(workWeek2).toBe('2021-05-10');
     expect(summary2.regularHours).toBe(40);
@@ -126,6 +148,7 @@ describe('summarizeWorkWeek', () => {
     const { workWeek: workWeek3, summary: summary3 } = summarizeWorkWeek(
       sampleWeek,
       30,
+      'Monday',
       1.75
     );
     expect(workWeek3).toBe('2021-05-10');

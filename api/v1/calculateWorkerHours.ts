@@ -79,6 +79,19 @@ export function validate(value: unknown): IWorkerTimeSheet {
   return value as IWorkerTimeSheet;
 }
 
+const getDayOfTheWeek = (date: string) =>
+  new Date(`${date} 0:0:0`).toLocaleString('en-us', { weekday: 'long' });
+
+export const getDateOfPreviousDay = (date: string): string => {
+  const currentDate = new Date(`${date} 0:0:0`);
+  const previousDate = new Date(currentDate);
+  previousDate.setDate(currentDate.getDate() - 1);
+  const day = previousDate.toLocaleString('en-us', { day: '2-digit' });
+  const month = previousDate.toLocaleString('en-us', { month: '2-digit' });
+  const year = previousDate.toLocaleString('en-us', { year: 'numeric' });
+  return `${year}-${month}-${day}`;
+};
+
 export function groupWorkByWeek(
   workerTimeSheet: IWorkerTimeSheet
 ): [[IWorkRecord]] {
@@ -94,12 +107,7 @@ export function groupWorkByWeek(
   }
   return workerHoursCopy.reduce(
     (weeks, record) => {
-      const dayOfTheWeek = new Date(`${record.date} 0:0:0`).toLocaleString(
-        'en-us',
-        {
-          weekday: 'long'
-        }
-      );
+      const dayOfTheWeek = getDayOfTheWeek(record.date);
       if (dayOfTheWeek !== workWeekStart) {
         const week = weeks[weeks.length - 1];
         week.push(record);
@@ -113,12 +121,29 @@ export function groupWorkByWeek(
   );
 }
 
+export function getStartOfWorkWeekDate(
+  date: string,
+  workWeekStart: string
+): string {
+  const dayOfTheWeek = getDayOfTheWeek(date);
+  if (dayOfTheWeek === workWeekStart) {
+    return date;
+  }
+  const previousDaysDate = getDateOfPreviousDay(date);
+  return getStartOfWorkWeekDate(previousDaysDate, workWeekStart);
+}
+
 export function summarizeWorkWeek(
   week: IWorkRecord[],
   hourlyRate: number,
+  workWeekStart: string,
   overtimeRate = 1.5
 ): { workWeek: string; summary: IWorkWeekSummary } {
   const [firstDay] = week;
+  const firstDayOfWorkWeek = getStartOfWorkWeekDate(
+    firstDay.date,
+    workWeekStart
+  );
   const totalHoursWorked = week
     .map((day) => parseInt(day.hours))
     .reduce((acc, hours) => acc + hours, 0);
@@ -127,7 +152,7 @@ export function summarizeWorkWeek(
   const regularHoursGrossPay = regularHours * hourlyRate;
   const overtimeHoursGrossPay = overtimeHours * hourlyRate * overtimeRate;
   return {
-    workWeek: firstDay.date,
+    workWeek: firstDayOfWorkWeek,
     summary: {
       regularHours,
       overtimeHours,
@@ -142,7 +167,11 @@ export default (req: VercelRequest, res: VercelResponse): void => {
   const workerTimeSheet = validate(req.body);
   const workByWeek = groupWorkByWeek(workerTimeSheet);
   const response = workByWeek.map((week) =>
-    summarizeWorkWeek(week, workerTimeSheet.configuration.workerHourlyBaseRate)
+    summarizeWorkWeek(
+      week,
+      workerTimeSheet.configuration.workerHourlyBaseRate,
+      workerTimeSheet.configuration.workWeekStart
+    )
   );
   res.json(response);
 };
